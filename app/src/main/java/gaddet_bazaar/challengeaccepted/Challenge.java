@@ -231,6 +231,8 @@ public class Challenge extends Activity {
 
 
     }
+    //alarm oluşturucu
+
 
     //life cycle listesi.
 
