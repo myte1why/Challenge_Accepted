@@ -17,16 +17,24 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import gaddet_bazaar.challengeaccepted.UserActions.Login;
+
 
 public class Challenge extends Activity {
+    //data to show
     private String KEY_TITLE;
     private String KEY_DIFFICULTY;
     private String KEY_WHAT;
-    private ParseObject lastChallange;
-    private String KEY_USER;
+    //   private String KEY_DID;
+
+    //data to compare with
     private String KEY_I_TITLE;
     private String KEY_I_DIFFICULTY;
     private String KEY_I_WHAT;
+
+    //Parse data rows
+    private String KEY_USER;
+    private ParseObject lastChallange;
 
 
     @Override
@@ -34,45 +42,62 @@ public class Challenge extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge);
 
+        //buttons for visiting challenges
         final Button backToList = (Button) findViewById(R.id.backToList);
         final Button replaceChallenge = (Button) findViewById(R.id.replaceChallenge);
         final Button backToMyChallenge = (Button) findViewById(R.id.backToMyChallenge);
+        //buttons visibility check
         backToList.setVisibility(View.INVISIBLE);
         replaceChallenge.setVisibility(View.INVISIBLE);
         backToMyChallenge.setVisibility(View.INVISIBLE);
+        //ui text calls
         final TextView textViev = (TextView) findViewById(R.id.t1);
         final TextView textViev1 = (TextView) findViewById(R.id.t2);
         final TextView textViev2 = (TextView) findViewById(R.id.t3);
+
+        //Parse information
         Parse.initialize(this, "wjJOQEbz9NoeeF92YncLPcOCfLwlWFq8sipVnv4m", "adi8YGFIWSMKhJ3KpOOoA2dt4qpBPLMdNjfN1m0f");
-
-
         ParseUser currentUser = ParseUser.getCurrentUser();
+        //notification text
+        //KEY_DID = getString(R.string.notificationtext);
 
 
+        //is the user login
         if (currentUser == null) {
+            //if not go to login
             navigateToLogin();
 
         } else {
+            // if user login first get intent to see what did user chose
             final Intent intent = getIntent();
+            //than get user name
             KEY_USER = currentUser.getUsername();
+            //now lets try to see if user is saved any challenge before
             ParseQuery<ParseObject> query = ParseQuery.getQuery("lastChallange");
             query.whereEqualTo("username", KEY_USER);
             query.getFirstInBackground(new GetCallback<ParseObject>() {
                 public void done(final ParseObject object, ParseException e) {
+                    //if user saves any challenge before lets get data from server
                     if (object != null) {
-
+                        //Setting user old challenge data to our data holders
                         KEY_TITLE = object.getString("title");
                         KEY_DIFFICULTY = object.getString("difficulty");
                         KEY_WHAT = object.getString("what");
+                        //if user coming from challenge browse than put data to data holders
                         KEY_I_TITLE = intent.getStringExtra("title");
                         KEY_I_DIFFICULTY = intent.getStringExtra("difficulty");
                         KEY_I_WHAT = intent.getStringExtra("what");
-
+                        //if user coming from challenge browse than set data holders as views.
                         if (KEY_I_TITLE != null) {
                             textViev.setText(KEY_I_TITLE);
                             textViev1.setText(KEY_I_DIFFICULTY);
                             textViev2.setText(KEY_I_WHAT);
+                            //setting buttons to visible to make navigation availabale
                             backToList.setVisibility(View.VISIBLE);
+                            replaceChallenge.setVisibility(View.VISIBLE);
+                            backToMyChallenge.setVisibility(View.VISIBLE);
+
+                            //setting buttons listeners and actions
                             View.OnClickListener listener1 = new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -80,7 +105,7 @@ public class Challenge extends Activity {
                                 }
                             };
                             backToList.setOnClickListener(listener1);
-                            replaceChallenge.setVisibility(View.VISIBLE);
+
                             View.OnClickListener listener2 = new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -105,7 +130,7 @@ public class Challenge extends Activity {
                                 }
                             };
                             replaceChallenge.setOnClickListener(listener2);
-                            backToMyChallenge.setVisibility(View.VISIBLE);
+
                             View.OnClickListener listener3 = new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -116,7 +141,9 @@ public class Challenge extends Activity {
                             backToMyChallenge.setOnClickListener(listener3);
 
 
-                        } else {
+                        }
+                        //if users not in challenge browse mode lets bind data from data base to ui
+                        else {
 
                             textViev.setText(KEY_TITLE);
                             textViev1.setText(KEY_DIFFICULTY);
@@ -132,11 +159,8 @@ public class Challenge extends Activity {
                             textViev.setText(KEY_TITLE);
                             textViev1.setText(KEY_DIFFICULTY);
                             textViev2.setText(KEY_WHAT);
-                            if (KEY_TITLE != null) {
-                                dataSaver();
-                            } else {
-                                Toast.makeText(Challenge.this, "There is a problem here!", Toast.LENGTH_LONG).show();
-                            }
+                            dataSaver();
+
 
                         } else {
                             navigateToList();
@@ -231,7 +255,13 @@ public class Challenge extends Activity {
 
 
     }
-    //alarm oluşturucu
+
+    //notification Setter
+
+
+    //notification timer
+
+
 
 
     //life cycle listesi.

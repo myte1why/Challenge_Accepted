@@ -27,5 +27,6 @@
     <string name="backtomychallenge">Stay with my challenge</string>
     <string name="tolist">Navigate to list</string>
     <string name="title_activity_my">MyActivity</string>
+    <string name="notificationtext">Did you work on your challenge?</string>
 
 </resources>

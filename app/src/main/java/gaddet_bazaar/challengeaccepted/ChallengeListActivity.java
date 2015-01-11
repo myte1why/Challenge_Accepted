@@ -37,6 +37,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import gaddet_bazaar.challengeaccepted.UserActions.Login;
+
 public class ChallengeListActivity extends ListActivity {
     public static final String TAG = ChallengeListActivity.class.getSimpleName();
     private final String KEY_TITLE = "title";
