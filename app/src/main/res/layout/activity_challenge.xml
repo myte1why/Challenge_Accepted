@@ -1,10 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#47a1ecff"
-    android:gravity="right"
-    tools:context=".Challenge"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/paddi"
+                android:background="#47a1ecff"
+                tools:context=".Challenge"
     >
 
 
@@ -18,7 +18,7 @@
         android:paddingLeft="27sp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="35sp"
+        android:textSize="@dimen/text_title"
         android:textStyle="italic"/>
 
     <TextView
@@ -31,7 +31,7 @@
         android:paddingLeft="27sp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#d5d3d3d3"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_difficulty"
         android:textStyle="bold|normal"/>
 
     <ScrollView
@@ -40,10 +40,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/t2">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/t3"
@@ -51,14 +50,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/t2"
                 android:paddingLeft="20sp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="30sp"
+                android:textSize="@dimen/text_what"
                 android:textStyle="italic"/>
 
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 
     <Button
@@ -66,11 +64,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="3dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/dim"
         android:background="#47699fb0"
-        android:text="@string/backtomychallenge"/>
+        android:text="@string/backtomychallenge"
+        android:textSize="@dimen/button_text"/>
 
     <Button
         android:id="@+id/replaceChallenge"
@@ -79,9 +77,10 @@
         android:layout_above="@+id/backToMyChallenge"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="3dp"
+        android:layout_margin="@dimen/dim"
         android:background="#47699fb0"
-        android:text="@string/replacechallenge"/>
+        android:text="@string/replacechallenge"
+        android:textSize="@dimen/button_text"/>
 
     <Button
         android:id="@+id/backToList"
@@ -90,9 +89,10 @@
         android:layout_above="@+id/replaceChallenge"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="3dp"
+        android:layout_margin="@dimen/dim"
         android:background="#47699fb0"
-        android:text="@string/backtolist"/>
+        android:text="@string/backtolist"
+        android:textSize="@dimen/button_text"/>
 
 
 </RelativeLayout>

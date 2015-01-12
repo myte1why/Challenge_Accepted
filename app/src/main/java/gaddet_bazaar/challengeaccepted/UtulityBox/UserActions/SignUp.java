@@ -1,4 +1,4 @@
-package gaddet_bazaar.challengeaccepted.UserActions;
+package gaddet_bazaar.challengeaccepted.UtulityBox.UserActions;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,12 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-import gaddet_bazaar.challengeaccepted.Challenge;
+import gaddet_bazaar.challengeaccepted.MainActivity.Challenge;
 import gaddet_bazaar.challengeaccepted.R;
 
 public class SignUp extends Activity {
@@ -28,7 +27,6 @@ public class SignUp extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        Parse.initialize(this, "wjJOQEbz9NoeeF92YncLPcOCfLwlWFq8sipVnv4m", "adi8YGFIWSMKhJ3KpOOoA2dt4qpBPLMdNjfN1m0f");
 
         mUsername = (EditText) findViewById(R.id.usernameField);
         mPassword = (EditText) findViewById(R.id.passwordField);
@@ -77,7 +75,8 @@ public class SignUp extends Activity {
                 }
             }
         });
-    }
 
+
+    }
 
 }

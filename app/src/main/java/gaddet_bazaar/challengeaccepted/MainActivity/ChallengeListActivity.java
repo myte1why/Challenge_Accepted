@@ -1,4 +1,4 @@
-package gaddet_bazaar.challengeaccepted;
+package gaddet_bazaar.challengeaccepted.MainActivity;
 
 
 import android.app.AlertDialog;
@@ -37,7 +37,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import gaddet_bazaar.challengeaccepted.UserActions.Login;
+import gaddet_bazaar.challengeaccepted.R;
+import gaddet_bazaar.challengeaccepted.UtulityBox.UserActions.Login;
 
 public class ChallengeListActivity extends ListActivity {
     public static final String TAG = ChallengeListActivity.class.getSimpleName();

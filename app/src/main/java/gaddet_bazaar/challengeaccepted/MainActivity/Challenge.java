@@ -1,4 +1,4 @@
-package gaddet_bazaar.challengeaccepted;
+package gaddet_bazaar.challengeaccepted.MainActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,31 +17,36 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import gaddet_bazaar.challengeaccepted.UserActions.Login;
+import gaddet_bazaar.challengeaccepted.R;
+import gaddet_bazaar.challengeaccepted.UtulityBox.UserActions.Login;
 
 
 public class Challenge extends Activity {
+
     //data to show
     private String KEY_TITLE;
     private String KEY_DIFFICULTY;
     private String KEY_WHAT;
-    //   private String KEY_DID;
-
     //data to compare with
     private String KEY_I_TITLE;
     private String KEY_I_DIFFICULTY;
     private String KEY_I_WHAT;
-
     //Parse data rows
     private String KEY_USER;
     private ParseObject lastChallange;
-
+    //parse
+    private String KEY_1;
+    private String KEY_2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge);
 
+
+        KEY_1 = getString(R.string.parse_id);
+        KEY_2 = getString(R.string.parse_id2);
+        
         //buttons for visiting challenges
         final Button backToList = (Button) findViewById(R.id.backToList);
         final Button replaceChallenge = (Button) findViewById(R.id.replaceChallenge);
@@ -56,10 +61,8 @@ public class Challenge extends Activity {
         final TextView textViev2 = (TextView) findViewById(R.id.t3);
 
         //Parse information
-        Parse.initialize(this, "wjJOQEbz9NoeeF92YncLPcOCfLwlWFq8sipVnv4m", "adi8YGFIWSMKhJ3KpOOoA2dt4qpBPLMdNjfN1m0f");
+        Parse.initialize(this, KEY_1, KEY_2);
         ParseUser currentUser = ParseUser.getCurrentUser();
-        //notification text
-        //KEY_DID = getString(R.string.notificationtext);
 
 
         //is the user login
@@ -256,15 +259,19 @@ public class Challenge extends Activity {
 
     }
 
+
+    //database kayıt
+
+
     //notification Setter
 
 
     //notification timer
 
 
-
-
     //life cycle listesi.
+
+
 
     @Override
     protected void onStop() {

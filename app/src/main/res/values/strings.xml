@@ -29,4 +29,14 @@
     <string name="title_activity_my">MyActivity</string>
     <string name="notificationtext">Did you work on your challenge?</string>
 
+    //parse
+    <string name="parse_id">wjJOQEbz9NoeeF92YncLPcOCfLwlWFq8sipVnv4m</string>
+    <string name="parse_id2">adi8YGFIWSMKhJ3KpOOoA2dt4qpBPLMdNjfN1m0f</string>
+
+    <string name="facebook_app_id">304742683055854</string>
+
+
+    //database
+    <string name="database_name">data</string>
+
 </resources>

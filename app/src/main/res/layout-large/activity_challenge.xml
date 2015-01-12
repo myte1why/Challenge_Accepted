@@ -2,6 +2,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="@dimen/paddi"
                 android:background="#47a1ecff"
                 android:gravity="right"
                 tools:context=".Challenge"
@@ -57,32 +58,38 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/backToList"
+        android:id="@+id/backToMyChallenge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/replaceChallenge"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/dim"
         android:background="#47699fb0"
-        android:text="@string/backtolist"/>
+        android:text="@string/backtomychallenge"
+        android:textSize="@dimen/button_text"/>
 
     <Button
         android:id="@+id/replaceChallenge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/backToMyChallenge"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/dim"
         android:background="#47699fb0"
-        android:text="@string/replacechallenge"/>
+        android:text="@string/replacechallenge"
+        android:textSize="@dimen/button_text"/>
 
     <Button
-        android:id="@+id/backToMyChallenge"
+        android:id="@+id/backToList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/replaceChallenge"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/dim"
         android:background="#47699fb0"
-        android:text="@string/backtomychallenge"/>
+        android:text="@string/backtolist"
+        android:textSize="@dimen/button_text"/>
 
 </RelativeLayout>

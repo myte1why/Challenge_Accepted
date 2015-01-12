@@ -1,8 +1,10 @@
-package gaddet_bazaar.challengeaccepted;
+package gaddet_bazaar.challengeaccepted.MainActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import gaddet_bazaar.challengeaccepted.R;
 
 public class MyActivity extends Activity {
 

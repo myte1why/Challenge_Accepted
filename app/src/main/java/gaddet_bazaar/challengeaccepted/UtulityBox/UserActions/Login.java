@@ -1,4 +1,4 @@
-package gaddet_bazaar.challengeaccepted.UserActions;
+package gaddet_bazaar.challengeaccepted.UtulityBox.UserActions;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,7 +13,7 @@ import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
-import gaddet_bazaar.challengeaccepted.Challenge;
+import gaddet_bazaar.challengeaccepted.MainActivity.Challenge;
 import gaddet_bazaar.challengeaccepted.R;
 
 public class Login extends Activity {

@@ -48,4 +48,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
         android:text="@string/sign_up_starter_text"/>
+
 </RelativeLayout>
