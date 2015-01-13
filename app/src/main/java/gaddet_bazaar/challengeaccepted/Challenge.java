@@ -216,7 +216,7 @@ public class Challenge extends Activity {
 
     //login ekranına yönlendirme
     private void navigateToLogin() {
-        Intent intent = new Intent(Challenge.this, Login.class);
+        Intent intent = new Intent(this, Pda.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -224,7 +224,7 @@ public class Challenge extends Activity {
 
     // restart activity
     public void recreate() {
-        Intent intent = new Intent(Challenge.this, MyActivity.class);
+        Intent intent = new Intent(Challenge.this, MyApplication.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
