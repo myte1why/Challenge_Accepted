@@ -43,7 +43,10 @@ public class Challenge extends Activity {
         final TextView textViev = (TextView) findViewById(R.id.t1);
         final TextView textViev1 = (TextView) findViewById(R.id.t2);
         final TextView textViev2 = (TextView) findViewById(R.id.t3);
-        Parse.initialize(this, "wjJOQEbz9NoeeF92YncLPcOCfLwlWFq8sipVnv4m", "adi8YGFIWSMKhJ3KpOOoA2dt4qpBPLMdNjfN1m0f");
+        String parseApi = getString(R.string.parse_app_id);
+        String parseClient = getString(R.string.parse_client_key);
+
+        Parse.initialize(this, parseApi, parseClient);
 
 
         ParseUser currentUser = ParseUser.getCurrentUser();
@@ -231,6 +234,7 @@ public class Challenge extends Activity {
 
 
     }
+
 
     //life cycle listesi.
 
