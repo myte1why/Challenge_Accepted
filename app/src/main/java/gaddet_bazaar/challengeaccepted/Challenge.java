@@ -27,6 +27,9 @@ public class Challenge extends Activity {
     private String KEY_I_TITLE;
     private String KEY_I_DIFFICULTY;
     private String KEY_I_WHAT;
+    private int KEY_I_EXP;
+    private int KEY_EXP;
+    private int EXP;
 
 
     @Override
@@ -43,6 +46,7 @@ public class Challenge extends Activity {
         final TextView textViev = (TextView) findViewById(R.id.t1);
         final TextView textViev1 = (TextView) findViewById(R.id.t2);
         final TextView textViev2 = (TextView) findViewById(R.id.t3);
+        final TextView textexp = (TextView) findViewById(R.id.textexp);
         String parseApi = getString(R.string.parse_app_id);
         String parseClient = getString(R.string.parse_client_key);
 
@@ -52,113 +56,165 @@ public class Challenge extends Activity {
         ParseUser currentUser = ParseUser.getCurrentUser();
 
 
-        if (currentUser == null) {
-            navigateToLogin();
+        final Intent intent = getIntent();
+        KEY_USER = currentUser.getUsername();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("lastChallange");
+        query.whereEqualTo("username", KEY_USER);
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            public void done(final ParseObject object, ParseException e) {
+                if (object != null) {
 
-        } else {
-            final Intent intent = getIntent();
-            KEY_USER = currentUser.getUsername();
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("lastChallange");
-            query.whereEqualTo("username", KEY_USER);
-            query.getFirstInBackground(new GetCallback<ParseObject>() {
-                public void done(final ParseObject object, ParseException e) {
-                    if (object != null) {
-
-                        KEY_TITLE = object.getString("title");
-                        KEY_DIFFICULTY = object.getString("difficulty");
-                        KEY_WHAT = object.getString("what");
-                        KEY_I_TITLE = intent.getStringExtra("title");
-                        KEY_I_DIFFICULTY = intent.getStringExtra("difficulty");
-                        KEY_I_WHAT = intent.getStringExtra("what");
-
-                        if (KEY_I_TITLE != null) {
-                            textViev.setText(KEY_I_TITLE);
-                            textViev1.setText(KEY_I_DIFFICULTY);
-                            textViev2.setText(KEY_I_WHAT);
-                            backToList.setVisibility(View.VISIBLE);
-                            View.OnClickListener listener1 = new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    navigateToList();
-                                }
-                            };
-                            backToList.setOnClickListener(listener1);
-                            replaceChallenge.setVisibility(View.VISIBLE);
-                            View.OnClickListener listener2 = new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    fromlisttokeyset(intent);
-                                    ParseQuery<ParseObject> query = ParseQuery.getQuery("lastChallange");
-                                    query.whereEqualTo("username", KEY_USER);
-                                    query.getFirstInBackground(new GetCallback<ParseObject>() {
-                                                                   public void done(final ParseObject object, ParseException e) {
-                                                                       if (object != null) {
-                                                                           object.deleteInBackground();
-                                                                           dataSaver();
-                                                                           recreate();
-                                                                       } else {
-                                                                           Toast.makeText(Challenge.this, "There is a problem here!", Toast.LENGTH_LONG).show();
-                                                                       }
+                    KEY_TITLE = object.getString("title");
+                    KEY_DIFFICULTY = object.getString("difficulty");
+                    KEY_WHAT = object.getString("what");
+                    KEY_EXP = object.getInt("exp");
+                    object.deleteInBackground();
 
 
+                    KEY_I_TITLE = intent.getStringExtra("title");
+                    KEY_I_DIFFICULTY = intent.getStringExtra("difficulty");
+                    KEY_I_WHAT = intent.getStringExtra("what");
+                    KEY_I_EXP = intent.getIntExtra("exp", 0);
+
+
+                    if (KEY_I_TITLE != null) {
+                        textViev.setText(KEY_I_TITLE);
+                        textViev1.setText(KEY_I_DIFFICULTY);
+                        textViev2.setText(KEY_I_WHAT);
+                        textexp.setText(KEY_I_EXP);
+                        backToList.setVisibility(View.VISIBLE);
+                        View.OnClickListener listener1 = new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                navigateToList();
+                            }
+                        };
+                        backToList.setOnClickListener(listener1);
+                        replaceChallenge.setVisibility(View.VISIBLE);
+                        View.OnClickListener listener2 = new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                fromlisttokeyset(intent);
+                                ParseQuery<ParseObject> query = ParseQuery.getQuery("lastChallange");
+                                query.whereEqualTo("username", KEY_USER);
+                                query.getFirstInBackground(new GetCallback<ParseObject>() {
+                                                               public void done(final ParseObject object, ParseException e) {
+                                                                   if (object != null) {
+                                                                       object.deleteInBackground();
+                                                                       dataSaver();
+                                                                       recreate();
+                                                                   } else {
+                                                                       Toast.makeText(Challenge.this, "There is a problem here!", Toast.LENGTH_LONG).show();
                                                                    }
+
+
                                                                }
-                                    );
+                                                           }
+                                );
 
-                                }
-                            };
-                            replaceChallenge.setOnClickListener(listener2);
-                            backToMyChallenge.setVisibility(View.VISIBLE);
-                            View.OnClickListener listener3 = new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    recreate();
+                            }
+                        };
+                        replaceChallenge.setOnClickListener(listener2);
+                        backToMyChallenge.setVisibility(View.VISIBLE);
+                        View.OnClickListener listener3 = new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                recreate();
 
-                                }
-                            };
-                            backToMyChallenge.setOnClickListener(listener3);
+                            }
+                        };
+                        backToMyChallenge.setOnClickListener(listener3);
 
 
+                    } else {
+
+                        textViev.setText(KEY_TITLE);
+                        textViev1.setText(KEY_DIFFICULTY);
+                        textViev2.setText(KEY_WHAT);
+                        textexp.setText(KEY_EXP + "");
+                        EXP = KEY_EXP + 5;
+                        dataSaver();
+                    }
+
+                } else {
+                    fromlisttokeyset(intent);
+
+                    if (KEY_TITLE != null) {
+                        textViev.setText(KEY_TITLE);
+                        textViev1.setText(KEY_DIFFICULTY);
+                        textViev2.setText(KEY_WHAT);
+                        textexp.setText(KEY_EXP + "");
+
+                        if (KEY_TITLE != null) {
+                            dataSaver();
                         } else {
-
-                            textViev.setText(KEY_TITLE);
-                            textViev1.setText(KEY_DIFFICULTY);
-                            textViev2.setText(KEY_WHAT);
+                            Toast.makeText(Challenge.this, "There is a problem here!", Toast.LENGTH_LONG).show();
                         }
 
                     } else {
-                        fromlisttokeyset(intent);
+                        navigateToList();
 
-                        if (KEY_TITLE != null) {
-
-
-                            textViev.setText(KEY_TITLE);
-                            textViev1.setText(KEY_DIFFICULTY);
-                            textViev2.setText(KEY_WHAT);
-                            if (KEY_TITLE != null) {
-                                dataSaver();
-                            } else {
-                                Toast.makeText(Challenge.this, "There is a problem here!", Toast.LENGTH_LONG).show();
-                            }
-
-                        } else {
-                            navigateToList();
-
-                        }
                     }
                 }
-            });
-
-
-        }
+            }
+        });
     }
+
 
     private void fromlisttokeyset(Intent intent) {
         KEY_TITLE = intent.getStringExtra("title");
         KEY_DIFFICULTY = intent.getStringExtra("difficulty");
         KEY_WHAT = intent.getStringExtra("what");
+        KEY_EXP = intent.getIntExtra("exp", 0);
     }
 
+
+
+    // methodlar
+    //Parse.com a veri saklama
+    private void dataSaver() {
+
+        lastChallange = new ParseObject("lastChallange");
+        lastChallange.put("title", KEY_TITLE);
+        lastChallange.put("difficulty", KEY_DIFFICULTY);
+        lastChallange.put("what", KEY_WHAT);
+        lastChallange.put("username", KEY_USER);
+        lastChallange.put("exp", EXP);
+        lastChallange.saveInBackground();
+    }
+
+    //listeye yönlendirme
+    private void navigateToList() {
+        Intent i = new Intent(this, ChallengeListActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
+    }
+
+    //login ekranına yönlendirme
+    private void navigateToLogin() {
+        Intent intent = new Intent(this, Pda.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    // restart activity
+    public void recreate() {
+        Intent intent = new Intent(Challenge.this, MyApplication.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+
+    //life cycle listesi.
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 
     // action bar ve options menüsü
     @Override
@@ -198,49 +254,4 @@ public class Challenge extends Activity {
     }
 
 
-    // methodlar
-    //Parse.com a veri saklama
-    private void dataSaver() {
-        lastChallange = new ParseObject("lastChallange");
-        lastChallange.put("title", KEY_TITLE);
-        lastChallange.put("difficulty", KEY_DIFFICULTY);
-        lastChallange.put("what", KEY_WHAT);
-        lastChallange.put("username", KEY_USER);
-        lastChallange.saveInBackground();
-    }
-
-    //listeye yönlendirme
-    private void navigateToList() {
-        Intent i = new Intent(this, ChallengeListActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
-    }
-
-    //login ekranına yönlendirme
-    private void navigateToLogin() {
-        Intent intent = new Intent(this, Pda.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
-
-    // restart activity
-    public void recreate() {
-        Intent intent = new Intent(Challenge.this, MyApplication.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-
-
-    }
-
-
-    //life cycle listesi.
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        finish();
-    }
 }

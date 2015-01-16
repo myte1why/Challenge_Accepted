@@ -1,11 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#47a1ecff"
-                android:gravity="right"
-                tools:context=".Challenge"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#47a1ecff"
+    android:gravity="right"
+    tools:context=".Challenge">
 
 
     <TextView
@@ -15,11 +14,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/backToList"
         android:paddingLeft="27sp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="35sp"
-        android:textStyle="italic"/>
+        android:textSize="20sp"
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/t2"
@@ -31,8 +31,8 @@
         android:paddingLeft="27sp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#d5d3d3d3"
-        android:textSize="20sp"
-        android:textStyle="bold|normal"/>
+        android:textSize="10sp"
+        android:textStyle="bold|normal" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -55,11 +55,19 @@
                 android:paddingLeft="20sp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="30sp"
-                android:textStyle="italic"/>
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/textexp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scrollView"
+        android:layout_centerHorizontal="true"
+        android:text="New Text" />
 
     <Button
         android:id="@+id/backToMyChallenge"
@@ -70,7 +78,7 @@
         android:layout_alignParentStart="true"
         android:layout_margin="3dp"
         android:background="#47699fb0"
-        android:text="@string/backtomychallenge"/>
+        android:text="@string/backtomychallenge" />
 
     <Button
         android:id="@+id/replaceChallenge"
@@ -81,7 +89,7 @@
         android:layout_alignParentStart="true"
         android:layout_margin="3dp"
         android:background="#47699fb0"
-        android:text="@string/replacechallenge"/>
+        android:text="@string/replacechallenge" />
 
     <Button
         android:id="@+id/backToList"
@@ -93,7 +101,7 @@
         android:layout_margin="3dp"
         android:background="#47699fb0"
         android:text="@string/backtolist"
-        android:textColor="#c6101010"/>
+        android:textColor="#c6101010" />
 
 
 </RelativeLayout>

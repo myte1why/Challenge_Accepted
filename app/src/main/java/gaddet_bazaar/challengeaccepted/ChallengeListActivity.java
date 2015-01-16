@@ -75,10 +75,12 @@ public class ChallengeListActivity extends ListActivity {
             String what = challenge.getString("what");
             what = Html.fromHtml(what).toString();
 
+
             Intent intent = new Intent(this, Challenge.class);
             intent.putExtra("title", title);
             intent.putExtra("difficulty", difficulty);
             intent.putExtra("what", what);
+            intent.putExtra("exp", 0);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
